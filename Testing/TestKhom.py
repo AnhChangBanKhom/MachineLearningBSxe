@@ -5,7 +5,7 @@ from PIL import Image
 model = YOLO('D:/TTTe/code/Version_Kq/best_epoch_19.pt')
 
 # Đường dẫn đến hình ảnh đầu vào
-image_path = 'D:/TTTe/code/AnhTest/KT (1).jpg'
+image_path = 'D:\TTTe\code\AnhTest\KT (2).jpg'
 
 # Đọc hình ảnh
 image = Image.open(image_path)
@@ -30,8 +30,8 @@ if results:
         y_cent = (y1 + y2) / 2
         converted_labels.append((x_cent, y_cent))
 
-    # Sắp xếp theo tọa độ trung bình từ trên xuống dưới (theo y)
-    sorted_objects = sorted(zip(detected_objects, converted_labels), key=lambda x: (x[1][1], x[1][0]))
+    # Sắp xếp theo tọa độ trung bình từ trên xuống dưới (theo y) và từ trái sang phải (theo x)
+    sorted_objects = sorted(zip(detected_objects, converted_labels), key=lambda x: (-x[1][1], x[1][0]))
 
     # In ra danh sách các đối tượng đã sắp xếp
     print("Danh sách các đối tượng đã sắp xếp theo tọa độ trung bình:")
